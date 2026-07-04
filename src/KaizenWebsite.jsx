@@ -69,9 +69,23 @@ function PreviewSwitcher({ page, setPage }) {
 }
 
 function Nav({ setPage }) {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <header className="sticky top-0 z-40 max-w-6xl mx-auto px-6 pt-6 pb-2">
-      <div className="flex items-center justify-between rounded-full border border-white/10 bg-[#121212]/80 backdrop-blur-md px-4 py-2.5 shadow-sm transition-all hover:shadow-md hover:bg-[#121212]/95">
+      <div className={`flex items-center justify-between rounded-full px-4 py-2.5 transition-all duration-300 ${
+        scrolled 
+          ? "border border-white/10 bg-[#121212]/80 backdrop-blur-md shadow-sm" 
+          : "border border-transparent bg-transparent"
+      }`}>
         <button onClick={() => setPage("home")} className="focus:outline-none">
           <Logo />
         </button>
@@ -297,8 +311,8 @@ function Home({ setPage }) {
           </div>
         </div>
 
-        <p className="mt-5 text-xs text-stone-400 animate-in fade-in duration-700 delay-700 fill-mode-both">
-          Coming soon. Built for busy professionals · Free to start
+        <p className="mt-6 text-[13.5px] font-medium text-stone-400 animate-in fade-in duration-700 delay-700 fill-mode-both">
+          Coming soon. Built for everyone <span className="mx-1.5 opacity-50">•</span> <span className="text-stone-300">Free to start</span>
         </p>
       </section>
 
