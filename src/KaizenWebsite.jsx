@@ -366,7 +366,7 @@ function Home({ setPage, onOpenModal }) {
         </div>
 
         <p className="mt-6 text-[13.5px] font-medium text-stone-400 animate-in fade-in duration-700 delay-700 fill-mode-both">
-          Coming soon. Built for everyone <span className="mx-1.5 opacity-50">•</span> <span className="text-stone-300">Free to start</span>
+          Join the waitlist for early access <span className="mx-1.5 opacity-50">•</span> <span className="text-stone-300">Coming soon</span>
         </p>
       </section>
 
@@ -408,8 +408,10 @@ function Home({ setPage, onOpenModal }) {
           <div className="absolute top-[13px] left-8 right-8 h-[2px] bg-white/5 hidden md:block z-0" />
           {steps.map((s, i) => (
             <div key={s.n} className={`relative z-10 animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both group`} style={{ animationDelay: `${i * 200}ms` }}>
-              <div className="h-7 w-7 rounded-full bg-[#121212] flex items-center justify-center mb-4 transition-all duration-300 cursor-default border border-white/20 text-stone-300 text-[11px] font-mono group-hover:scale-110 group-hover:shadow-[0_0_12px_rgba(139,92,246,0.3)] group-hover:border-purple-500/50 group-hover:text-purple-400">
-                {s.n}
+              <div className="h-7 w-7 rounded-full bg-[#121212] flex items-center justify-center mb-4 transition-all duration-300 cursor-default border border-white/20 text-[11px] font-mono group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(168,85,247,0.2)] group-hover:border-white/40 text-stone-300">
+                <span className="transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br group-hover:from-blue-400 group-hover:via-purple-400 group-hover:to-orange-400">
+                  {s.n}
+                </span>
               </div>
               <h3 className="text-[15px] font-semibold text-stone-100">{s.t}</h3>
               <p className="mt-2 text-[13.5px] text-stone-400 leading-relaxed pr-4">{s.d}</p>
@@ -482,10 +484,43 @@ function Home({ setPage, onOpenModal }) {
             <p className="mt-4 text-stone-400 text-[16px] max-w-lg mx-auto">
               Install KirinAI and let your next tab do the sorting for you. It takes exactly two clicks to start.
             </p>
-            <Button onClick={onOpenModal} size="pill" className="mt-8 gap-2 bg-[#121212] border border-white/10 text-stone-100 hover:bg-white hover:text-stone-900 transition-all font-medium shadow-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]">
-              <Chrome className="h-4 w-4" />
-              Add to Chrome — it's free
-            </Button>
+            
+            <div className="mt-8 mx-auto max-w-md">
+              {status === "success" ? (
+                <div className="flex items-center justify-center p-3 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium text-sm">
+                  <CheckCircle2 className="w-4 h-4 mr-2" />
+                  You're on the list! Keep an eye on your inbox.
+                </div>
+              ) : (
+                <div className="group relative rounded-full p-[1px] transition-all duration-500 focus-within:bg-gradient-to-r focus-within:from-blue-500 focus-within:via-purple-500 focus-within:to-orange-500 focus-within:shadow-[0_0_20px_rgba(139,92,246,0.25)] bg-white/10">
+                  <form
+                    onSubmit={handleSubscribe}
+                    className="flex items-center p-1 rounded-full bg-[#121212] w-full h-full"
+                  >
+                    <input
+                      type="email"
+                      name="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Your Email Address"
+                      required
+                      disabled={status === "loading"}
+                      className="flex-1 rounded-l-full bg-transparent border-none text-stone-100 px-5 py-2 text-[14.5px] placeholder:text-stone-400 focus:outline-none focus:ring-0 disabled:opacity-50"
+                      style={{ transition: 'background-color 5000s ease-in-out 0s', WebkitTextFillColor: '#f5f5f4' }}
+                    />
+                    <Button size="pillSm" className="shadow-none" disabled={status === "loading"}>
+                      {status === "loading" ? <Loader2 className="w-4 h-4 animate-spin" /> : "Get Notified"}
+                    </Button>
+                  </form>
+                </div>
+              )}
+              {status === "error" && (
+                <p className="mt-3 text-xs text-red-400">Something went wrong. Please try again.</p>
+              )}
+            </div>
+            <p className="mt-5 text-[13.5px] font-medium text-stone-400">
+              Join the waitlist for early access <span className="mx-1.5 opacity-50">•</span> <span className="text-stone-300">Limited spots available</span>
+            </p>
           </div>
         </div>
       </section>
@@ -493,18 +528,9 @@ function Home({ setPage, onOpenModal }) {
       <footer className="max-w-6xl mx-auto px-6 pb-14">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-white/10 pt-8">
           <Logo />
-          <div className="flex flex-wrap justify-center items-center gap-6 text-[13px] text-stone-400 font-medium">
-            <a href="#" className="hover:text-stone-100 transition-colors">Privacy</a>
-            <a href="#" className="hover:text-stone-100 transition-colors">Terms</a>
-            <a href="#" className="hover:text-stone-100 transition-colors">Contact</a>
+          <div className="text-center md:text-right text-xs text-stone-400">
+            © 2026 KirinAI. Built for everyone.
           </div>
-          <div className="flex items-center gap-4 text-stone-400">
-            <a href="#" className="hover:text-stone-100 transition-colors"><Twitter className="h-4 w-4" /></a>
-            <a href="#" className="hover:text-stone-100 transition-colors"><Github className="h-4 w-4" /></a>
-          </div>
-        </div>
-        <div className="text-center md:text-left mt-8 text-xs text-stone-400">
-          © 2026 KirinAI. Built for everyone.
         </div>
       </footer>
     </>
@@ -516,8 +542,24 @@ function AuthCard({ title, subtitle, children }) {
     <section className="min-h-[75vh] flex items-center justify-center px-6">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="mx-auto h-11 w-11 rounded-2xl bg-stone-900 flex items-center justify-center mb-5">
-            <Sparkles className="h-5 w-5 text-white" />
+          <div className="mx-auto h-12 w-12 rounded-xl bg-[#0a0a0a] border border-white/10 flex items-center justify-center shadow-sm mb-5">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient id="logo-grad-auth" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#60A5FA" />
+                  <stop offset="50%" stopColor="#C084FC" />
+                  <stop offset="100%" stopColor="#FB923C" />
+                </linearGradient>
+              </defs>
+              <rect x="3" y="2" width="5.5" height="20" rx="2.5" fill="url(#logo-grad-auth)" />
+              <path d="M21 3L11.5 12L21 21" stroke="url(#logo-grad-auth)" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </div>
           <h1 className="text-2xl font-semibold tracking-tight text-stone-100">{title}</h1>
           {subtitle && <p className="mt-2 text-[13.5px] text-stone-400">{subtitle}</p>}
@@ -529,16 +571,36 @@ function AuthCard({ title, subtitle, children }) {
 }
 
 function SignIn() {
+  const [status, setStatus] = useState("idle");
+
+  const handleLogin = () => {
+    setStatus("loading");
+    setTimeout(() => {
+      setStatus("soon");
+      setTimeout(() => setStatus("idle"), 3000);
+    }, 1500);
+  };
+
   return (
     <AuthCard title="Sign in to KirinAI" subtitle="Connect Gmail to start sorting your inbox.">
-      <button className="w-full flex items-center justify-center gap-3 rounded-full border border-stone-300 py-3 text-sm font-medium text-stone-200 hover:bg-stone-950 transition-colors">
-        <svg className="h-4 w-4" viewBox="0 0 24 24">
-          <path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.47a5.53 5.53 0 0 1-2.4 3.63v3h3.89c2.28-2.1 3.56-5.2 3.56-8.82Z" />
-          <path fill="#34A853" d="M12 24c3.24 0 5.95-1.07 7.93-2.9l-3.89-3.02c-1.08.73-2.46 1.16-4.04 1.16-3.1 0-5.73-2.1-6.67-4.92H1.3v3.1A12 12 0 0 0 12 24Z" />
-          <path fill="#FBBC05" d="M5.33 14.32a7.2 7.2 0 0 1 0-4.63v-3.1H1.3a12 12 0 0 0 0 10.83l4.03-3.1Z" />
-          <path fill="#EA4335" d="M12 4.77c1.76 0 3.34.6 4.58 1.79l3.44-3.44C17.94 1.19 15.23 0 12 0 7.4 0 3.44 2.6 1.3 6.6l4.03 3.1c.94-2.83 3.57-4.93 6.67-4.93Z" />
-        </svg>
-        Continue with Google
+      <button 
+        onClick={handleLogin}
+        disabled={status !== "idle"}
+        className="w-full flex items-center justify-center gap-3 rounded-full border border-stone-300 py-3 text-sm font-medium text-stone-200 hover:bg-stone-950 transition-colors disabled:opacity-50"
+      >
+        {status === "loading" ? (
+          <Loader2 className="h-5 w-5 animate-spin" />
+        ) : status === "soon" ? (
+          null
+        ) : (
+          <svg className="h-4 w-4" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.47a5.53 5.53 0 0 1-2.4 3.63v3h3.89c2.28-2.1 3.56-5.2 3.56-8.82Z" />
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.07 7.93-2.9l-3.89-3.02c-1.08.73-2.46 1.16-4.04 1.16-3.1 0-5.73-2.1-6.67-4.92H1.3v3.1A12 12 0 0 0 12 24Z" />
+            <path fill="#FBBC05" d="M5.33 14.32a7.2 7.2 0 0 1 0-4.63v-3.1H1.3a12 12 0 0 0 0 10.83l4.03-3.1Z" />
+            <path fill="#EA4335" d="M12 4.77c1.76 0 3.34.6 4.58 1.79l3.44-3.44C17.94 1.19 15.23 0 12 0 7.4 0 3.44 2.6 1.3 6.6l4.03 3.1c.94-2.83 3.57-4.93 6.67-4.93Z" />
+          </svg>
+        )}
+        {status === "loading" ? "Authenticating..." : status === "soon" ? "Authentication coming soon" : "Continue with Google"}
       </button>
       <p className="mt-4 text-[11.5px] text-stone-400 text-center leading-relaxed">
         KirinAI requests read-only Gmail access. We never send email or delete anything
