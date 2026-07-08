@@ -1,4 +1,4 @@
-# KirinAI — Student Placement Workspace (Project Kirin)
+# KirinAI — Gmail Workflow Reimagined (Project Kirin)
 
 A Chrome-extension + web app that converts Gmail into an actionable Kanban workflow for college students managing placement opportunities (OAs, interviews, offers, deadlines). This repository contains the architecture, backend, frontend, and deployment plans for an MVP that reliably syncs Gmail, applies deterministic rules first, then falls back to an LLM-based AI classifier.
 
