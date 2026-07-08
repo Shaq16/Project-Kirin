@@ -18,24 +18,42 @@ import {
   Clock3,
   Github,
   Twitter,
+  Loader2,
 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Badge } from "./components/ui/badge";
 import NeuralNodeLayout from "./components/HeroInteractiveBackground";
+import ComingSoonModal from "./components/ComingSoonModal";
 
 const NAV_LINKS = ["Features", "How it works", "Pricing", "FAQ"];
 
 function Logo({ dark }) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2.5">
       <div
-        className={`h-8 w-8 rounded-2xl flex items-center justify-center ${dark ? "bg-[#121212]" : "bg-stone-900"
+        className={`h-8 w-8 rounded-xl flex items-center justify-center shadow-sm ${dark ? "bg-[#0a0a0a] border border-white/10" : "bg-stone-900"
           }`}
       >
-        <Sparkles className={`h-4 w-4 ${dark ? "text-stone-100" : "text-white"}`} strokeWidth={2.25} />
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#60A5FA" />
+              <stop offset="50%" stopColor="#C084FC" />
+              <stop offset="100%" stopColor="#FB923C" />
+            </linearGradient>
+          </defs>
+          <rect x="3" y="2" width="5.5" height="20" rx="2.5" fill="url(#logo-grad)" />
+          <path d="M21 3L11.5 12L21 21" stroke="url(#logo-grad)" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </div>
-      <span className={`font-semibold tracking-tight text-[15px] ${dark ? "text-white" : "text-stone-100"}`}>
-        Kaizen
+      <span className={`font-semibold tracking-tight text-[15.5px] ${dark ? "text-white" : "text-stone-100"}`}>
+        KirinAI
       </span>
     </div>
   );
@@ -68,7 +86,7 @@ function PreviewSwitcher({ page, setPage }) {
   );
 }
 
-function Nav({ setPage }) {
+function Nav({ setPage, onOpenModal }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -90,18 +108,7 @@ function Nav({ setPage }) {
           <Logo />
         </button>
         <div className="flex items-center gap-1">
-          <button
-            onClick={() => setPage("billing")}
-            className="px-3 py-1.5 text-[13.5px] font-medium text-stone-400 hover:text-stone-100 transition-colors rounded-full hover:bg-white/5/50 hidden sm:block"
-          >
-            Billing
-          </button>
-          <button
-            onClick={() => setPage("profile")}
-            className="px-3 py-1.5 text-[13.5px] font-medium text-stone-400 hover:text-stone-100 transition-colors rounded-full hover:bg-white/5/50 hidden sm:block"
-          >
-            Profile
-          </button>
+
           <Button
             variant="ghost"
             size="pillSm"
@@ -110,7 +117,7 @@ function Nav({ setPage }) {
           >
             Sign in
           </Button>
-          <Button size="pillSm" className="gap-1.5 ml-2">
+          <Button size="pillSm" className="gap-1.5 ml-2" onClick={onOpenModal}>
             <Chrome className="h-3.5 w-3.5" />
             Add to Chrome
           </Button>
@@ -170,7 +177,7 @@ function KaizenBoardMockup() {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="relative w-full rounded-[28px] border border-white/10 shadow-2xl overflow-hidden transition-all duration-700 hover:-translate-y-2 hover:shadow-emerald-900/20 group animate-in fade-in zoom-in-95 duration-500" key={current.id}>
+      <div className="relative w-full rounded-[28px] border border-white/10 shadow-2xl overflow-hidden transition-all duration-700 hover:-translate-y-2 hover:shadow-emerald-900/20 group">
         {/* wallpaper */}
         <div
           className="relative h-[420px] w-full transition-colors duration-1000"
@@ -196,14 +203,14 @@ function KaizenBoardMockup() {
 
           {/* search pill */}
           <div className="relative z-10 flex justify-center mt-2">
-            <div className="flex items-center gap-2 bg-black/45 backdrop-blur-md text-white/80 text-[13px] rounded-full px-4 py-2 w-72">
+            <div className="flex items-center gap-2 bg-[#1a1a1a] text-white/80 text-[13px] rounded-full px-4 py-2 w-72 border border-white/5 shadow-sm">
               <Search className="h-3.5 w-3.5" />
               Search the web
             </div>
           </div>
 
           {/* kanban overlay */}
-          <div className="relative z-10 mx-4 mt-6 rounded-2xl bg-[#121212]/95 backdrop-blur-md backdrop-blur-xl shadow-xl p-4 transition-all duration-500">
+          <div className="relative z-10 mx-4 mt-6 rounded-2xl bg-[#121212] border border-white/5 shadow-2xl p-4 transition-all duration-500">
             <div className="flex items-center justify-between mb-3">
               <span className="text-[13px] font-semibold text-stone-200">{current.label} Board</span>
               <span className="text-[11px] text-stone-400">Synced just now</span>
@@ -219,7 +226,7 @@ function KaizenBoardMockup() {
                   </div>
                   <div className="space-y-2">
                     {col.cards.map((c) => (
-                      <div key={c.t} className="rounded-lg border border-white/40 bg-[#121212]/60 backdrop-blur-md p-2.5 shadow-sm transition-all hover:bg-[#121212]/80 backdrop-blur-md">
+                      <div key={c.t} className="rounded-lg border border-white/5 bg-[#1c1c1c] p-2.5 shadow-sm transition-colors hover:bg-[#262626]">
                         <div className="text-[11.5px] font-medium text-stone-200 leading-snug">{c.t}</div>
                         <div className="text-[10.5px] text-stone-400 mt-1">{c.tag}</div>
                       </div>
@@ -234,11 +241,43 @@ function KaizenBoardMockup() {
           Your inbox, sorted before you open it
         </div>
       </div>
+      
+      {/* minimalist thin progress indicator below */}
+      <div className="mt-10 w-48 h-[2px] bg-white/10 overflow-hidden relative" key={activeBoard}>
+         <div 
+           className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500"
+           style={{ animation: 'progress 3s linear forwards' }}
+         />
+      </div>
     </div>
   );
 }
 
-function Home({ setPage }) {
+function Home({ setPage, onOpenModal }) {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle");
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setStatus("loading");
+    
+    try {
+      const response = await fetch("https://formspree.io/f/mwvddejg", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      
+      if (response.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      setStatus("error");
+    }
+  };
+
   const features = [
     {
       icon: Zap,
@@ -263,7 +302,7 @@ function Home({ setPage }) {
   ];
 
   const steps = [
-    { n: "01", t: "Connect Gmail", d: "One OAuth grant. Kaizen never sees your password, and read access starts read-only." },
+    { n: "01", t: "Connect Gmail", d: "One OAuth grant. KirinAI never sees your password, and read access starts read-only." },
     { n: "02", t: "It sorts itself", d: "Rules catch the obvious ones instantly. AI fills in the rest with a summary and a deadline." },
     { n: "03", t: "Act from the board", d: "Drag cards as you apply, interview, and hear back. Open the original email in one click." },
   ];
@@ -284,7 +323,7 @@ function Home({ setPage }) {
           </span>
         </h1>
         <p className="mt-6 text-[17px] text-stone-400 max-w-xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 fill-mode-both">
-          Kaizen watches your important emails, sorts them into intuitive Kanban boards, and puts them
+          KirinAI watches your important emails, sorts them into intuitive Kanban boards, and puts them
           right in your browser's new tab — so nothing gets left behind.
         </p>
 
@@ -293,22 +332,37 @@ function Home({ setPage }) {
 
         {/* Coming Soon waitlist capture form */}
         <div className="mt-8 mx-auto max-w-md animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500 fill-mode-both">
-          <div className="group relative rounded-full p-[1px] transition-all duration-500 focus-within:bg-gradient-to-r focus-within:from-blue-500 focus-within:via-purple-500 focus-within:to-orange-500 focus-within:shadow-[0_0_20px_rgba(139,92,246,0.25)] bg-white/10">
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="flex items-center p-1 rounded-full bg-[#121212] w-full h-full"
-            >
-              <input
-                type="email"
-                placeholder="Your Email Address"
-                required
-                className="flex-1 bg-transparent border-none text-stone-100 px-5 py-2 text-[14.5px] placeholder:text-stone-400 focus:outline-none focus:ring-0"
-              />
-              <Button size="pillSm" className="shadow-none">
-                Get Notified
-              </Button>
-            </form>
-          </div>
+          {status === "success" ? (
+            <div className="flex items-center justify-center p-3 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium text-sm">
+              <CheckCircle2 className="w-4 h-4 mr-2" />
+              You're on the list! Keep an eye on your inbox.
+            </div>
+          ) : (
+            <div className="group relative rounded-full p-[1px] transition-all duration-500 focus-within:bg-gradient-to-r focus-within:from-blue-500 focus-within:via-purple-500 focus-within:to-orange-500 focus-within:shadow-[0_0_20px_rgba(139,92,246,0.25)] bg-white/10">
+              <form
+                onSubmit={handleSubscribe}
+                className="flex items-center p-1 rounded-full bg-[#121212] w-full h-full"
+              >
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your Email Address"
+                  required
+                  disabled={status === "loading"}
+                  className="flex-1 rounded-l-full bg-transparent border-none text-stone-100 px-5 py-2 text-[14.5px] placeholder:text-stone-400 focus:outline-none focus:ring-0 disabled:opacity-50"
+                  style={{ transition: 'background-color 5000s ease-in-out 0s', WebkitTextFillColor: '#f5f5f4' }}
+                />
+                <Button size="pillSm" className="shadow-none" disabled={status === "loading"}>
+                  {status === "loading" ? <Loader2 className="w-4 h-4 animate-spin" /> : "Get Notified"}
+                </Button>
+              </form>
+            </div>
+          )}
+          {status === "error" && (
+            <p className="mt-3 text-xs text-red-400">Something went wrong. Please try again.</p>
+          )}
         </div>
 
         <p className="mt-6 text-[13.5px] font-medium text-stone-400 animate-in fade-in duration-700 delay-700 fill-mode-both">
@@ -419,16 +473,16 @@ function Home({ setPage }) {
       {/* FINAL CTA */}
       <section className="px-6 pb-24">
         <div className="max-w-6xl mx-auto rounded-[32px] bg-stone-950 px-10 py-20 text-center relative overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
+          <div className="absolute top-0 right-1/4 w-[600px] h-[600px] pointer-events-none -translate-y-1/4" style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 60%)' }} />
+          <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] pointer-events-none -translate-x-1/2 translate-y-1/2" style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 60%)' }} />
           <div className="relative z-10">
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white">
               Stop hunting through your inbox.
             </h2>
             <p className="mt-4 text-stone-400 text-[16px] max-w-lg mx-auto">
-              Install Kaizen and let your next tab do the sorting for you. It takes exactly two clicks to start.
+              Install KirinAI and let your next tab do the sorting for you. It takes exactly two clicks to start.
             </p>
-            <Button size="pill" className="mt-8 gap-2 bg-[#121212] border border-white/10 text-stone-100 hover:bg-white hover:text-stone-900 transition-all font-medium shadow-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+            <Button onClick={onOpenModal} size="pill" className="mt-8 gap-2 bg-[#121212] border border-white/10 text-stone-100 hover:bg-white hover:text-stone-900 transition-all font-medium shadow-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]">
               <Chrome className="h-4 w-4" />
               Add to Chrome — it's free
             </Button>
@@ -450,7 +504,7 @@ function Home({ setPage }) {
           </div>
         </div>
         <div className="text-center md:text-left mt-8 text-xs text-stone-400">
-          © 2026 Kaizen. Built for everyone.
+          © 2026 KirinAI. Built for everyone.
         </div>
       </footer>
     </>
@@ -476,7 +530,7 @@ function AuthCard({ title, subtitle, children }) {
 
 function SignIn() {
   return (
-    <AuthCard title="Sign in to Kaizen" subtitle="Connect Gmail to start sorting your inbox.">
+    <AuthCard title="Sign in to KirinAI" subtitle="Connect Gmail to start sorting your inbox.">
       <button className="w-full flex items-center justify-center gap-3 rounded-full border border-stone-300 py-3 text-sm font-medium text-stone-200 hover:bg-stone-950 transition-colors">
         <svg className="h-4 w-4" viewBox="0 0 24 24">
           <path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.47a5.53 5.53 0 0 1-2.4 3.63v3h3.89c2.28-2.1 3.56-5.2 3.56-8.82Z" />
@@ -487,8 +541,8 @@ function SignIn() {
         Continue with Google
       </button>
       <p className="mt-4 text-[11.5px] text-stone-400 text-center leading-relaxed">
-        Kaizen requests read-only Gmail access. We never send email or delete anything
-        on your behalf.
+        KirinAI requests read-only Gmail access. We never send email or delete anything
+        without your explicit permission.
       </p>
       <div className="mt-5 pt-5 border-t border-white/5 flex items-center gap-2 text-[11.5px] text-stone-400">
         <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
@@ -631,14 +685,16 @@ function Profile() {
 
 export default function KaizenWebsite() {
   const [page, setPage] = useState("home");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] font-sans relative">
-      <Nav setPage={setPage} />
-      {page === "home" && <Home setPage={setPage} />}
+    <div className="min-h-screen bg-[#0a0a0a] font-sans relative overflow-x-hidden">
+      <Nav setPage={setPage} onOpenModal={() => setIsModalOpen(true)} />
+      {page === "home" && <Home setPage={setPage} onOpenModal={() => setIsModalOpen(true)} />}
       {page === "signin" && <SignIn />}
       {page === "billing" && <Billing />}
       {page === "profile" && <Profile />}
+      <ComingSoonModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
