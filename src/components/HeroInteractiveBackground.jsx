@@ -7,7 +7,7 @@ export default function NeuralNodeLayout() {
       
       {/* Massive Horizontal Web centered on the Node */}
       <svg 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[800px] min-w-[1200px] pointer-events-none" 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[800px] min-w-[1200px] pointer-events-none -z-10" 
         viewBox="0 0 1200 800" 
         preserveAspectRatio="none"
       >
@@ -22,6 +22,11 @@ export default function NeuralNodeLayout() {
               <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.5" />
               <stop offset="100%" stopColor="#f97316" stopOpacity="1" />
             </linearGradient>
+            <linearGradient id="lineGradVert" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#10b981" stopOpacity="1" />
+              <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+            </linearGradient>
 
             <style>
               {`
@@ -29,6 +34,11 @@ export default function NeuralNodeLayout() {
                   stroke-dasharray: 1000;
                   stroke-dashoffset: 1000;
                   animation: flow-horiz 5s ease-in-out infinite;
+                }
+                .anim-line-vert {
+                  stroke-dasharray: 400;
+                  stroke-dashoffset: 400;
+                  animation: flow-vert 3s ease-in-out infinite;
                 }
                 .anim-line-delay-1 { animation-delay: 0.2s; }
                 .anim-line-delay-2 { animation-delay: 1.1s; }
@@ -44,6 +54,12 @@ export default function NeuralNodeLayout() {
                   10% { opacity: 1; }
                   90% { opacity: 1; }
                   100% { stroke-dashoffset: -1000; opacity: 0; }
+                }
+                @keyframes flow-vert {
+                  0% { stroke-dashoffset: 400; opacity: 0; }
+                  10% { opacity: 1; }
+                  90% { opacity: 1; }
+                  100% { stroke-dashoffset: -400; opacity: 0; }
                 }
               `}
             </style>
@@ -70,6 +86,9 @@ export default function NeuralNodeLayout() {
             <path d="M 1200 550 C 900 550, 750 400, 600 400" />
             <path d="M 1200 650 C 950 650, 800 400, 600 400" />
             <path d="M 1200 750 C 900 750, 800 400, 600 400" />
+            
+            {/* Vertical drop */}
+            <path d="M 600 400 L 600 800" />
           </g>
 
           {/* Animated glowing pulses left (inward to center) */}
@@ -94,6 +113,11 @@ export default function NeuralNodeLayout() {
             <path d="M 1200 550 C 900 550, 750 400, 600 400" className="anim-line-horiz anim-line-delay-7" />
             <path d="M 1200 650 C 950 650, 800 400, 600 400" className="anim-line-horiz anim-line-delay-5" />
             <path d="M 1200 750 C 900 750, 800 400, 600 400" className="anim-line-horiz anim-line-delay-6" />
+          </g>
+
+          {/* Animated glowing pulse down (outward from center) */}
+          <g stroke="url(#lineGradVert)" strokeWidth="3" fill="none" strokeLinecap="round">
+            <path d="M 600 400 L 600 800" className="anim-line-vert" />
           </g>
       </svg>
 
