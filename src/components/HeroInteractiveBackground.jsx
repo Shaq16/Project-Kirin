@@ -23,9 +23,9 @@ export default function NeuralNodeLayout() {
               <stop offset="100%" stopColor="#f97316" stopOpacity="1" />
             </linearGradient>
             <linearGradient id="lineGradVert" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#10b981" stopOpacity="1" />
-              <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+              <stop offset="0%" stopColor="#60A5FA" stopOpacity="1" />
+              <stop offset="40%" stopColor="#C084FC" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#FB923C" stopOpacity="0" />
             </linearGradient>
 
             <style>
