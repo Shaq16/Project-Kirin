@@ -122,9 +122,8 @@ export default function NeuralNodeLayout() {
       </svg>
 
       {/* The Central Node: Glowing Email Icon */}
-      <div className="relative z-10 w-14 h-14 flex items-center justify-center rounded-full border border-stone-800 bg-[#0a0a0a]">
-         <div className="absolute inset-0 rounded-full bg-emerald-500/10 blur-md pointer-events-none" />
-         <Mail className="h-5 w-5 text-stone-300 animate-pulse" />
+      <div className="relative z-10 w-14 h-14 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-orange-500 shadow-[0_0_30px_rgba(168,85,247,0.4)]">
+         <Mail className="h-6 w-6 text-white animate-pulse" />
       </div>
 
     </div>
