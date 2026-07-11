@@ -311,10 +311,7 @@ function Home({ setPage, onOpenModal }) {
     <>
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-6 pt-16 pb-[15vh] text-center">
-        <Badge variant="spectral" className="mb-7 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <Sparkles className="h-3 w-3 mr-1.5 text-purple-400" />
-          Gmail workflow, reimagined
-        </Badge>
+
         <h1 className="text-5xl md:text-6xl font-semibold tracking-tight text-stone-100 leading-[1.05] animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 fill-mode-both">
           Turn your inbox into
           <br />
