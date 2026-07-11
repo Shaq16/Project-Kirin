@@ -95,7 +95,7 @@ export default function NeuralNodeLayout() {
           
           {/* Static multispectral vertical neural link */}
           <g stroke="url(#lineGradVertStatic)" strokeWidth="1.5" fill="none">
-            <path d="M 600 400 L 600 800" />
+            <path d="M 600 400 L 600.1 800" />
           </g>
 
           {/* Animated glowing pulses left (inward to center) */}
@@ -124,7 +124,7 @@ export default function NeuralNodeLayout() {
 
           {/* Animated glowing pulse down (outward from center) */}
           <g stroke="url(#lineGradVert)" strokeWidth="3" fill="none" strokeLinecap="round">
-            <path d="M 600 400 L 600 800" className="anim-line-vert" />
+            <path d="M 600 400 L 600.1 800" className="anim-line-vert" />
           </g>
       </svg>
 
