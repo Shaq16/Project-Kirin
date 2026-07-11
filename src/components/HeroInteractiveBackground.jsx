@@ -27,6 +27,11 @@ export default function NeuralNodeLayout() {
               <stop offset="40%" stopColor="#C084FC" stopOpacity="0.8" />
               <stop offset="100%" stopColor="#FB923C" stopOpacity="0" />
             </linearGradient>
+            <linearGradient id="lineGradVertStatic" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#60A5FA" stopOpacity="0.6" />
+              <stop offset="40%" stopColor="#C084FC" stopOpacity="0.6" />
+              <stop offset="100%" stopColor="#FB923C" stopOpacity="0.6" />
+            </linearGradient>
 
             <style>
               {`
@@ -86,8 +91,10 @@ export default function NeuralNodeLayout() {
             <path d="M 1200 550 C 900 550, 750 400, 600 400" />
             <path d="M 1200 650 C 950 650, 800 400, 600 400" />
             <path d="M 1200 750 C 900 750, 800 400, 600 400" />
-            
-            {/* Vertical drop */}
+          </g>
+          
+          {/* Static multispectral vertical neural link */}
+          <g stroke="url(#lineGradVertStatic)" strokeWidth="1.5" fill="none">
             <path d="M 600 400 L 600 800" />
           </g>
 

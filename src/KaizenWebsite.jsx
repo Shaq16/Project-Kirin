@@ -133,7 +133,7 @@ function KaizenBoardMockup() {
   const boards = [
     {
       id: "job-search",
-      label: "Job Search",
+      label: "Placement",
       bgGradient: "linear-gradient(180deg, #cfe0d8 0%, #9fb8ac 28%, #5c7a6c 55%, #2f4438 78%, #1c2a22 100%)",
       columns: [
         { name: "New", accent: "bg-stone-300", cards: [{ t: "Campus Drive — Atlassian", tag: "Today" }] },
