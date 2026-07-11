@@ -750,7 +750,7 @@ export default function KaizenWebsite() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] font-sans relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] font-sans relative overflow-x-clip">
       <Nav setPage={setPage} onOpenModal={() => setIsModalOpen(true)} />
       {page === "home" && <Home setPage={setPage} onOpenModal={() => setIsModalOpen(true)} />}
       {page === "signin" && <SignIn />}
