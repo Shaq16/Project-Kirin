@@ -463,7 +463,7 @@ function Home({ setPage, onOpenModal }) {
               ))}
             </ul>
             <Button
-              onClick={() => setPage("billing")}
+              onClick={onOpenModal}
               className="mt-auto w-full rounded-full bg-[#121212] text-stone-100 hover:bg-white/5 transition-colors font-medium"
             >
               Upgrade to Pro
