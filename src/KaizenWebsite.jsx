@@ -215,9 +215,9 @@ function KaizenBoardMockup() {
               <span className="text-[13px] font-semibold text-stone-200">{current.label} Board</span>
               <span className="text-[11px] text-stone-400">Synced just now</span>
             </div>
-            <div className="grid grid-cols-4 gap-3">
+            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-4 md:grid md:grid-cols-4 md:overflow-visible md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {current.columns.map((col) => (
-                <div key={col.name}>
+                <div key={col.name} className="min-w-[85%] sm:min-w-[45%] md:min-w-0 snap-center shrink-0">
                   <div className="flex items-center gap-1.5 mb-2">
                     <span className={`h-1.5 w-1.5 rounded-full ${col.accent}`} />
                     <span className="text-[11px] font-medium text-stone-400 uppercase tracking-wide">
