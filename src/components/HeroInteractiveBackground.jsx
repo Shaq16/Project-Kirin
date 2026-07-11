@@ -23,14 +23,9 @@ export default function NeuralNodeLayout() {
               <stop offset="100%" stopColor="#f97316" stopOpacity="1" />
             </linearGradient>
             <linearGradient id="lineGradVert" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#60A5FA" stopOpacity="1" />
-              <stop offset="40%" stopColor="#C084FC" stopOpacity="0.8" />
+              <stop offset="0%" stopColor="#60A5FA" stopOpacity="0" />
+              <stop offset="30%" stopColor="#C084FC" stopOpacity="1" />
               <stop offset="100%" stopColor="#FB923C" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="lineGradVertStatic" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#60A5FA" stopOpacity="0.6" />
-              <stop offset="40%" stopColor="#C084FC" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="#FB923C" stopOpacity="0.6" />
             </linearGradient>
 
             <style>
@@ -41,9 +36,9 @@ export default function NeuralNodeLayout() {
                   animation: flow-horiz 5s ease-in-out infinite;
                 }
                 .anim-line-vert {
-                  stroke-dasharray: 400;
-                  stroke-dashoffset: 400;
-                  animation: flow-vert 3s ease-in-out infinite;
+                  stroke-dasharray: 150 600;
+                  stroke-dashoffset: 150;
+                  animation: flow-vert 2.5s ease-in-out infinite;
                 }
                 .anim-line-delay-1 { animation-delay: 0.2s; }
                 .anim-line-delay-2 { animation-delay: 1.1s; }
@@ -61,10 +56,10 @@ export default function NeuralNodeLayout() {
                   100% { stroke-dashoffset: -1000; opacity: 0; }
                 }
                 @keyframes flow-vert {
-                  0% { stroke-dashoffset: 400; opacity: 0; }
+                  0% { stroke-dashoffset: 150; opacity: 0; }
                   10% { opacity: 1; }
                   90% { opacity: 1; }
-                  100% { stroke-dashoffset: -400; opacity: 0; }
+                  100% { stroke-dashoffset: -300; opacity: 0; }
                 }
               `}
             </style>
@@ -91,11 +86,6 @@ export default function NeuralNodeLayout() {
             <path d="M 1200 550 C 900 550, 750 400, 600 400" />
             <path d="M 1200 650 C 950 650, 800 400, 600 400" />
             <path d="M 1200 750 C 900 750, 800 400, 600 400" />
-          </g>
-          
-          {/* Static multispectral vertical neural link */}
-          <g stroke="url(#lineGradVertStatic)" strokeWidth="1.5" fill="none">
-            <path d="M 600 400 L 600.1 800" />
           </g>
 
           {/* Animated glowing pulses left (inward to center) */}
@@ -124,7 +114,7 @@ export default function NeuralNodeLayout() {
 
           {/* Animated glowing pulse down (outward from center) */}
           <g stroke="url(#lineGradVert)" strokeWidth="3" fill="none" strokeLinecap="round">
-            <path d="M 600 400 L 600.1 800" className="anim-line-vert" />
+            <path d="M 600 400 C 630 500, 570 600, 600.1 700" className="anim-line-vert" />
           </g>
       </svg>
 
