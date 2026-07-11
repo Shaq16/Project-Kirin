@@ -98,12 +98,10 @@ function Nav({ setPage, onOpenModal }) {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 max-w-6xl mx-auto px-6 pt-6 pb-2">
-      <div className={`flex items-center justify-between rounded-full px-4 py-2.5 transition-all duration-300 ${
-        scrolled 
-          ? "border border-white/10 bg-[#121212]/80 backdrop-blur-md shadow-sm" 
-          : "border border-transparent bg-transparent"
-      }`}>
+    <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+      scrolled ? "bg-[#0a0a0a]/90 backdrop-blur-md py-3 border-b border-white/5" : "bg-transparent py-4 sm:py-6"
+    }`}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         <button onClick={() => setPage("home")} className="focus:outline-none">
           <Logo />
         </button>
@@ -348,7 +346,7 @@ function Home({ setPage, onOpenModal }) {
                   placeholder="Your Email Address"
                   required
                   disabled={status === "loading"}
-                  className="flex-1 rounded-l-full bg-transparent border-none text-stone-100 px-5 py-2 text-[14.5px] placeholder:text-stone-400 focus:outline-none focus:ring-0 disabled:opacity-50"
+                  className="flex-1 min-w-0 rounded-l-full bg-transparent border-none text-stone-100 px-4 sm:px-5 py-2 text-[14.5px] placeholder:text-stone-400 focus:outline-none focus:ring-0 disabled:opacity-50"
                   style={{ transition: 'background-color 5000s ease-in-out 0s', WebkitTextFillColor: '#f5f5f4' }}
                 />
                 <Button size="pillSm" className="shadow-none" disabled={status === "loading"}>
@@ -502,7 +500,7 @@ function Home({ setPage, onOpenModal }) {
                       placeholder="Your Email Address"
                       required
                       disabled={status === "loading"}
-                      className="flex-1 rounded-l-full bg-transparent border-none text-stone-100 px-5 py-2 text-[14.5px] placeholder:text-stone-400 focus:outline-none focus:ring-0 disabled:opacity-50"
+                      className="flex-1 min-w-0 rounded-l-full bg-transparent border-none text-stone-100 px-4 sm:px-5 py-2 text-[14.5px] placeholder:text-stone-400 focus:outline-none focus:ring-0 disabled:opacity-50"
                       style={{ transition: 'background-color 5000s ease-in-out 0s', WebkitTextFillColor: '#f5f5f4' }}
                     />
                     <Button size="pillSm" className="shadow-none" disabled={status === "loading"}>
